@@ -68,6 +68,16 @@ And on the (redis) server m/c:
 	# Reduces time for sockets to be in FIN-WAIT-2 state (default 60secs).
 	net.ipv4.tcp_fin_timeout = 30
 	#
+	
+	# Memory overcommit enabled as per the following recommendation from Redis
+        # 939:M 08 Jul 07:06:49.189 # WARNING overcommit_memory is set to 0!
+        # Background save may fail under low memory condition. To fix this issue add
+        # 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or
+        # run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+        vm.overcommit_memory = 1
+        #
+        vm.swappiness = 0
+
 	ubuntu@redis-ports:~$
 
 	And run 'sysctl -p' after modifying sysctl.conf as above
